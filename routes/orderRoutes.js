@@ -8,18 +8,17 @@ const orderRoutes=express.Router();
 orderRoutes.use('/createOrder',checkUserAuth)
 orderRoutes.use('/updateOrder',checkUserAuth)
 orderRoutes.use('/deleteOrder',checkUserAuth)
-orderRoutes.use('/getAllOrder',checkUserAuth)
-orderRoutes.use('/filterByValue',checkUserAuth)
-orderRoutes.use('/filterByInterval',checkUserAuth)
+orderRoutes.use('/getAllOrders',checkUserAuth)
+orderRoutes.use('/dynamicFilters',checkUserAuth)
+
 
 
 // protected routes
 orderRoutes.post('/createOrder',orderController.createOrder)
 orderRoutes.put('/updateOrder',orderController.updateOrder)
 orderRoutes.delete('/deleteOrder',orderController.deleteOrder)
-orderRoutes.get('/getAllOrder',orderController.getAllOrder)
-orderRoutes.get('/filterByValue',orderController.filterByValue)
-orderRoutes.get('/filterByInterval',orderController.filterByInterval)
+orderRoutes.get('/getAllOrders',orderController.getAllOrder)
+orderRoutes.get('/dynamicFilters',orderController.dynamicFilters)
 
 // export
 export default orderRoutes

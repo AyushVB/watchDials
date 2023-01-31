@@ -1,10 +1,10 @@
 import orderModel from '../models/orders.js'
 
-// orderName,orderDate,modelNo,partyName,size,pkgQty,material,feature1BaseFeature,feature2Extra,feature3Mechanical,numberType,NP,copper,GP,otherColorIndex,department
+// orderName,orderDate,modelNo,partyName,size,pkgQty,material,feature1BaseFeature,feature2Extra,feature3Mechanical,numberType,NP,copper,GP,otherColorIndex,department,extraQtyPercentage
 
 class orderController{
     static createOrder=async (req,res)=>{
-        const {orderName,modelNo,partyName,size,pkgQty,material,feature1BaseFeature,feature2Extra,feature3Mechanical,numberType,NP,copper,GP,otherColorIndex,department}=req.body
+        const {orderName,modelNo,partyName,size,pkgQty,material,feature1BaseFeature,feature2Extra,feature3Mechanical,numberType,NP,copper,GP,otherColorIndex,department,extraQtyPercentage}=req.body
         if(orderName&&modelNo&&partyName&&size&&pkgQty&&department){
             try {
                 const newOrder=new orderModel({
@@ -23,6 +23,7 @@ class orderController{
                     GP:GP,
                     otherColorIndex:otherColorIndex,
                     department:department,
+                    extraQtyPercentage:extraQtyPercentage
                 })
                 await newOrder.save()
                 res.send({"status":"Success","message":"Order sucessfully created..."})      
@@ -77,18 +78,25 @@ class orderController{
             res.send({"status":"failed","message":"Failed to get all orders ...."})
         }
     }
-    static filterByValue=async (req,res)=>{
+    static dynamicFilters=async (req,res)=>{
         try {
-            const orders=await orderModel.find(req.body) 
+            const filters = {};
+            for (const key in req.query) {
+                if (req.query[key].includes(',')) {
+                    const values = req.query[key].split(',');
+                    filters[key] = { $gt: values[0], $lt: values[1] };
+                } else if (req.query[key]) {
+                    filters[key] = req.query[key];
+                }
+            }
+            const orders=await orderModel.find(filters) 
             res.send({"status":"success","orders":orders})       
         } catch (error) {
             res.send({"status":"failed","message":"Failed to filter orders ...."})
         }
         
     }
-    static filterByInterval=async (req,res)=>{
-        const {attribute,intial_value,final_value}=req.body
-    }
+    
 }
 
 // export

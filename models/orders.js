@@ -18,6 +18,7 @@ const orderSchema=new mongoose.Schema({
     GP:{type:Number ,default:0 },
     otherColorIndex:{type:Number ,default:0},
     department:{type:String ,required:true ,trim:true},
+    extraQtyPercentage:{type:Number,default:10},
 })
 
 // Model
