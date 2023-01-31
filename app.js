@@ -4,6 +4,7 @@ import dotenv from 'dotenv'
 import connectDB from './config/connectDB.js'
 import userRoutes from './routes/userRoutes.js'
 import orderRoutes from './routes/orderRoutes.js'
+import clientRoutes from './routes/clientRoutes.js'
 
 dotenv.config()
 const app=express()
@@ -21,10 +22,13 @@ app.use(express.json())
 connectDB(DATABASE_URL)
 
 // LOAD user routes
-// app.use('/api/user',userRoutes)
+app.use('/api/user',userRoutes)
 
 // LOAD order routes
-// app.use('/api/order',orderRoutes)
+app.use('/api/order',orderRoutes)
+
+// LOAD order routes
+app.use('/api/order',clientRoutes)
 
 app.listen(PORT,()=>{
     console.log(`listen on PORT: ${PORT}`)
