@@ -12,7 +12,7 @@ const orderSchema=new mongoose.Schema({
     feature1BaseFeature:{type:String ,trim:true,default:null},
     feature2Extra:{type:String,trim:true,default:null},
     feature3Mechanical:{type:String ,trim:true,default:null},
-    numberType:{type:String ,trim:true,default:null},
+    numberType:{type:String ,required:true,trim:true},
     NP:{type:Number  ,default:0},
     copper:{type:Number ,default:0 },
     GP:{type:Number ,default:0 },

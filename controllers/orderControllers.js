@@ -5,7 +5,7 @@ import orderModel from '../models/orders.js'
 class orderController{
     static createOrder=async (req,res)=>{
         const {orderName,modelNo,partyName,size,pkgQty,material,feature1BaseFeature,feature2Extra,feature3Mechanical,numberType,NP,copper,GP,otherColorIndex,department,extraQtyPercentage}=req.body
-        if(orderName&&modelNo&&partyName&&size&&pkgQty&&department){
+        if(orderName&&modelNo&&partyName&&size&&pkgQty&&department&&material&&numberType){
             try {
                 const newOrder=new orderModel({
                     orderName:orderName,
@@ -33,7 +33,8 @@ class orderController{
             
         }
         else{
-            res.send({"status":"failed","message":"Necessary fields are required ...."})                
+            res.send({"status":"failed","message":"Necessary fields are required ....","Necessary fields":"orderName,modelNo,partyName,size,pkgQty,material,numberType,department"
+            })                
         }
         
     }
@@ -56,9 +57,9 @@ class orderController{
                 GP:GP,
                 otherColorIndex:otherColorIndex,
                 department:department}})
-            res.send({"status":"Success","message":"Order sucessfully created..."})      
+            res.send({"status":"Success","message":"Order sucessfully updated..."})      
         } catch (error) {
-            res.send({"status":"failed","message":"Unable to create order...."})   
+            res.send({"status":"failed","message":"Unable to update order...."})   
         } 
     }
     static deleteOrder=async (req,res)=>{
