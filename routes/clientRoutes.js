@@ -12,7 +12,7 @@ clientRoutes.get('/getAllClients',checkUserAuth)
 
 // protected routes
 clientRoutes.post('/addClient',clientController.addClient)
-clientRoutes.put('/updateClient',clientController.updateClient)
+clientRoutes.patch('/updateClient',clientController.updateClient)
 clientRoutes.delete('/deleteClient',clientController.deleteClient)
 clientRoutes.get('/getAllClients',clientController.getAllClients)
 

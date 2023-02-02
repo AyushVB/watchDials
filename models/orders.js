@@ -19,6 +19,10 @@ const orderSchema=new mongoose.Schema({
     otherColorIndex:{type:Number ,default:0},
     department:{type:String ,required:true ,trim:true},
     extraQtyPercentage:{type:Number,default:10},
+    // orderPicture: {type: Buffer,required: true},
+    // orderPictureContentType: {type: String,required: true},
+    // dialPicture: {type: Buffer,required: true},
+    // dialPictureContentType: {type: String,required: true}
 })
 
 // Model

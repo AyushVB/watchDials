@@ -1,5 +1,5 @@
 import express from "express"
-import userController from "../controllers/userController.js";
+import userController from "../controllers/userControllers.js";
 import checkUserAuth from "../middlewares/auth-middleware.js";
 
 const userRoutes=express.Router();
@@ -17,6 +17,7 @@ userRoutes.put('/reset-password/:id/:token',userController.userpasswordReset)
 // protected routes
 userRoutes.put('/changepassword',userController.changeUserPassword)
 userRoutes.get('/loggeduser',userController.loggedUser)
+
 
 // export
 export default userRoutes

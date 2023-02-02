@@ -27,8 +27,8 @@ app.use('/api/user',userRoutes)
 // LOAD order routes
 app.use('/api/order',orderRoutes)
 
-// LOAD order routes
-app.use('/api/order',clientRoutes)
+// LOAD client routes
+app.use('/api/client',clientRoutes)
 
 app.listen(PORT,()=>{
     console.log(`listen on PORT: ${PORT}`)
