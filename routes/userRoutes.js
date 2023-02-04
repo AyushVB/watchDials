@@ -12,10 +12,10 @@ userRoutes.use('/loggeduser',checkUserAuth)
 userRoutes.post('/register',userController.userRegistration)
 userRoutes.post('/login',userController.userLogin)
 userRoutes.post('/sent-reset-password-email',userController.sendUserPasswordResetEmail)
-userRoutes.put('/reset-password/:id/:token',userController.userpasswordReset)
+userRoutes.patch('/reset-password/:id/:token',userController.userpasswordReset)
 
 // protected routes
-userRoutes.put('/changepassword',userController.changeUserPassword)
+userRoutes.patch('/changepassword',userController.changeUserPassword)
 userRoutes.get('/loggeduser',userController.loggedUser)
 
 
