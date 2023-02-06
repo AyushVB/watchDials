@@ -5,7 +5,11 @@ import clientModel from "../models/clients.js"
 class clientController{
     static addClient=async (req,res)=>{
         const {name,email,phoneNo,address,city,state,country,frequentOrderType}=req.body
-        if(name&&email&&phoneNo&&address&&city&&state&&country){
+        if(!(name&&email&&phoneNo&&address&&city&&state&&country)){
+            res.send({"status":"failed","message":"Necessary fields are required ....","Necessary fields":"name,email,phoneNo,address,city,state,country"
+            })    
+        }
+        else{
             try {
                 const newClient=new clientModel({
                     name:name,
@@ -22,12 +26,7 @@ class clientController{
                 res.send({"status":"Success","message":"Client sucessfully added..."})      
             } catch (error) {
                 res.send({"status":"failed","message":"Unable to add client...."})   
-            }
-            
-        }
-        else{
-            res.send({"status":"failed","message":"Necessary fields are required ....","Necessary fields":"name,email,phoneNo,address,city,state,country"
-            })                
+            }                            
         }
         
     }

@@ -4,7 +4,10 @@ import userModel from '../models/users.js'
 const checkUserAuth= async(req,res,next)=>{
     const { authorization }=req.headers
     
-    if(authorization && authorization.startsWith('Bearer')){
+    if(!(authorization && authorization.startsWith('Bearer'))){
+        res.status(401).send({"status":"failed","message":"Unauthorized user"})
+    }
+    else {
         const token=await authorization.split(' ')[1]
          
         // verify token
@@ -15,9 +18,6 @@ const checkUserAuth= async(req,res,next)=>{
             req.user=await userModel.findById(user.userID).select('-password')
             next();
         })
-    }
-    else {
-        res.status(401).send({"status":"failed","message":"Unauthorized user"})
     }   
 }
 
