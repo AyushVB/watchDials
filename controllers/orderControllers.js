@@ -99,10 +99,10 @@ class orderController{
                         values[0]=new Date(values[0])
                         values[1]=new Date(values[1])
                     }    
-                    filters[key] = { $gt: values[0], $lt: values[1] };
+                    filters[key] = { $gte: values[0], $lte: values[1] };
                 } else if (req.query[key]) {
                     if(key==="orderDate"){
-                        orderDate=new Date(orderDate)    
+                        req.query.key=new Date(req.query.key)    
                     }    
                     filters[key] = req.query[key];
                 }
