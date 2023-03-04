@@ -74,18 +74,20 @@ class orderController{
     }
     static deleteOrder=async (req,res)=>{
         const {id}=req.body
-        const order=await orderModel.findById(id)
-        if(!order){
-            res.send({"status":"failed","message":"Order id is incorrect...."})
-        }
-        else{
-            try {
+        try {
+            const order=await orderModel.findById(id)
+            if(!order){
+                res.send({"status":"failed","message":"Order id is incorrect...."})
+            }
+            else{
                 await orderModel.findByIdAndDelete(id)
                 res.send({"status":"success","message":"delete order successfully..."})
-            } catch (error) {
-                res.send({"status":"failed","message":"Unable to delete order...."})
-            }
+            } 
         }    
+        catch (error) {
+                res.send({"status":"failed","message":"Unable to delete order...."})
+        }
+           
     }
     static getAllOrder=async (req,res)=>{
         try {
