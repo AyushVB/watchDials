@@ -49,7 +49,7 @@ class clientController{
         } 
     }
     static deleteClient=async (req,res)=>{
-        const {id}=req.body
+        const id=req.query.id
         try {
             await clientModel.findByIdAndDelete(id)
             res.send({"status":"success","message":"delete client successfully..."})
