@@ -73,7 +73,7 @@ class orderController{
         } 
     }
     static deleteOrder=async (req,res)=>{
-        const {id}=req.body
+        const {id}=req.query.id
         try {
             const order=await orderModel.findById(id)
             if(!order){
