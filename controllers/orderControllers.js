@@ -13,7 +13,7 @@ class orderController{
             try {
                 if(!extraQtyPercentage)extraQtyPercentage=10
                 if(orderDate)orderDate=new Date(orderDate)
-                const extraQty=pkgQty*(1+extraQtyPercentage*(0.01));
+                const extraQty=Math.ceil(pkgQty*(1+extraQtyPercentage*(0.01)));
                 const newOrder=new orderModel({
                     orderName:orderName,
                     orderDate:orderDate,
